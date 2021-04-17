@@ -25,6 +25,12 @@
 
   <actions>
     <!-- Add your actions here -->
+    <group id="utt.actionGroup" class="com.flyingwillow.utt.action.UttActionGroup" text="Unit Test Tools" popup="true">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+
+      <action id="utt.action.create" class="com.flyingwillow.utt.action.UttGenerateAction" text="generate ut" description="创建单元测试">
+      </action>
+    </group>
   </actions>
 
 </idea-plugin>
