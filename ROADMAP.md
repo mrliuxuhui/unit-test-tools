@@ -11,3 +11,13 @@
 > 1. tips for function UT numbers should create
 > 2. config basic UT framework
 > 3. count function branches
+> 
+
+
+
+
+# version 2.0
+## functions
+> 1. tdd mode
+> 2. first create test case
+> 3. generate code from test case once

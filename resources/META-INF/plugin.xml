@@ -5,7 +5,7 @@
   <vendor email="mrliuxuhui@gmail.com" url="">FlyingWillow</vendor>
 
   <description><![CDATA[
-      An NB tool for writting unit test!
+      An NB tool for writting unit test! An NB tool for writting unit test!
     ]]></description>
 
   <change-notes><![CDATA[
@@ -13,14 +13,26 @@
     ]]></change-notes>
 
   <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="173.0"/>
+  <idea-version since-build="193.0"/>
 
   <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
   <depends>com.intellij.modules.platform</depends>
 
+  <extensionPoints>
+    <extensionPoint name="DependenceBuilder" interface="com.flyingwillow.utt.extensionpoint.dependence.DependenceBuilder" />
+    <extensionPoint name="DependenceManager" interface="com.flyingwillow.utt.extensionpoint.dependence.DependenceManager" />
+    <extensionPoint name="TestClassBuilder" interface="com.flyingwillow.utt.extensionpoint.code.TestClassBuilder" />
+    <extensionPoint name="TestMethodBuilder" interface="com.flyingwillow.utt.extensionpoint.code.TestMethodBuilder" />
+  </extensionPoints>
+
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+  </extensions>
+
+  <extensions defaultExtensionNs="com.flyingwillow.utt">
+    <DependenceBuilder id="com.flyingwillow.utt.extension.dependence.SpringWebDependenceBuilder" implementation="com.flyingwillow.utt.extension.dependence.SpringWebDependenceBuilder" />
+    <DependenceManager implementation="com.flyingwillow.utt.extension.dependence.MavenDependenceManager" id="com.flyingwillow.utt.extension.dependence.MavenDependenceManager" />
   </extensions>
 
   <actions>
@@ -32,5 +44,14 @@
       </action>
     </group>
   </actions>
+
+  <projectListeners>
+    <listener class="com.flyingwillow.utt.listeners.ProjectUttInitializer" topic="com.intellij.openapi.project.ProjectManagerListener" />
+  </projectListeners>
+
+  <applicationListeners>
+    <listener class="com.flyingwillow.utt.listeners.ApplicationInitializer" topic="com.intellij.openapi.startup.StartupActivity" />
+  </applicationListeners>
+
 
 </idea-plugin>
